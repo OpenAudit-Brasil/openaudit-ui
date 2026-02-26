@@ -1,26 +1,171 @@
-@import "tailwindcss";
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #0b0c0f;            /* preto fosco */
+  --fg: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.65);
+  --muted2: rgba(255,255,255,.45);
+  --border: rgba(255,255,255,.14);
+  --surface: rgba(255,255,255,.06);
+  --surface2: rgba(255,255,255,.08);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+* { box-sizing: border-box; }
+html, body { height: 100%; }
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+/* Layout base */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 18px 72px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estados */
+.centered {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.searching {
+  justify-content: flex-start;
+  align-items: stretch;
+  text-align: left;
+}
+
+/* Logo */
+.logo {
+  font-size: clamp(42px, 6vw, 72px);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin-bottom: 22px;
+  user-select: none;
+}
+.logo strong {
+  font-weight: 800;
+}
+.logo span {
+  font-weight: 200;
+  opacity: .9;
+  margin-left: 10px;
+}
+
+/* Search bar */
+.searchWrap {
+  width: min(760px, 100%);
+  transition: transform 250ms ease, margin 250ms ease;
+}
+
+.searchBar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 10px 14px;
+  backdrop-filter: blur(6px);
+}
+
+.searchInput {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: var(--fg);
+  font-size: 16px;
+  padding: 6px 4px;
+}
+.searchInput::placeholder {
+  color: var(--muted2);
+}
+
+.iconBtn {
+  width: 38px;
+  height: 38px;
+  border: 0;
+  background: var(--surface2);
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 120ms ease, background 120ms ease;
+}
+.iconBtn:hover { transform: scale(1.03); }
+.iconBtn:active { transform: scale(0.98); }
+
+.iconBtn svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: var(--fg);
+  stroke-width: 2;
+  opacity: .9;
+}
+
+/* Loading + fontes */
+.loadingArea {
+  margin-top: 18px;
+  padding: 10px 6px;
+}
+
+.loadingTitle {
+  font-size: 16px;
+  color: var(--fg);
+  opacity: .95;
+}
+
+.sourceLine {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
+
+/* Resultado MVP */
+.resultBox {
+  margin-top: 22px;
+  padding: 18px 16px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(255,255,255,.03);
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Footer */
+.footer {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  font-size: 12px;
+  color: var(--muted2);
+  background: linear-gradient(to top, rgba(11,12,15,.92), rgba(11,12,15,0));
+}
+
+.footer a {
+  color: var(--muted2);
+  text-decoration: none;
+}
+.footer a:hover {
+  color: var(--muted);
+  text-decoration: underline;
 }
