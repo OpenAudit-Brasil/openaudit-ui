@@ -1,65 +1,130 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import React, { useEffect, useMemo, useRef, useState } from "react";
+
+type Phase = "idle" | "searching" | "done";
+
+const SOURCES = ["Receita Federal", "gov.br", "IBGE", "IPEA", "TSE"] as const;
+
+function LoadingDots() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setCount((c) => (c + 1) % 4); // 0..3
+    }, 450);
+    return () => window.clearInterval(id);
+  }, []);
+
+  return <>{Array(count).fill(".").join("")}</>;
+}
+
+export default function HomePage() {
+  const [phase, setPhase] = useState<Phase>("idle");
+  const [query, setQuery] = useState("");
+  const [sourceIndex, setSourceIndex] = useState(0);
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const currentSource = useMemo(() => {
+    return SOURCES[Math.min(sourceIndex, SOURCES.length - 1)];
+  }, [sourceIndex]);
+
+  const startSearch = () => {
+    if (phase === "searching") return;
+
+    // MVP: até aceita query vazia (você decide depois se bloqueia)
+    setPhase("searching");
+    setSourceIndex(0);
+  };
+
+  useEffect(() => {
+    if (phase !== "searching") return;
+
+    let idx = 0;
+    const intervalId = window.setInterval(() => {
+      idx += 1;
+      if (idx >= SOURCES.length) {
+        window.clearInterval(intervalId);
+        setPhase("done");
+        return;
+      }
+      setSourceIndex(idx);
+    }, 5000);
+
+    return () => window.clearInterval(intervalId);
+  }, [phase]);
+
+  // UX: foco no input quando volta pra idle
+  useEffect(() => {
+    if (phase === "idle") inputRef.current?.focus();
+  }, [phase]);
+
+  const mainClass = phase === "idle" ? "main centered" : "main searching";
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+    <div className="page">
+      <main className={mainClass}>
+        {phase === "idle" && (
+          <div className="logo" aria-label="OpenAudit Brasil">
+            <strong>OpenAudit</strong>
+            <span>Brasil</span>
+          </div>
+        )}
+
+        <div className="searchWrap">
+          <div className="searchBar" role="search">
+            <input
+              ref={inputRef}
+              className="searchInput"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Buscar registro…"
+              aria-label="Campo de busca"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") startSearch();
+              }}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+            <button
+              className="iconBtn"
+              onClick={startSearch}
+              aria-label="Iniciar pesquisa"
+              type="button"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="M20 20L17 17"></path>
+              </svg>
+            </button>
+          </div>
+
+          {(phase === "searching" || phase === "done") && (
+            <div className="loadingArea" aria-live="polite">
+              {phase === "searching" && (
+                <>
+                  <div className="loadingTitle">
+                    Pesquisando<LoadingDots />
+                  </div>
+                  <div className="sourceLine">{currentSource}</div>
+                </>
+              )}
+
+              {phase === "done" && (
+                <div className="resultBox">
+                  página em desenvolvimento. Apoie a causa{" "}
+                  <strong>comunidade@openauditbrasil.com</strong>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </main>
+
+      <footer className="footer" aria-label="Rodapé">
+        <a href="/terms">Termos</a>
+        <a href="/privacy">Política de Privacidade</a>
+      </footer>
     </div>
   );
 }
