@@ -5,6 +5,9 @@ Interface minimalista estilo “busca”, construída em **Next.js (App Router)*
 > **Status:** MVP de interface (sem backend).  
 > **Objetivo do MVP:** validar identidade visual + comportamento de busca + espaço para futura integração com fontes públicas.
 
+
+![página home de pesquisa da openaudit Brasil](docs/home.png)
+
 ---
 
 ## Sumário
