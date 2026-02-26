@@ -1,6 +1,6 @@
 # OpenAudit Brasil — UI (MVP)
 
-Interface minimalista estilo “busca”, construída em **Next.js (App Router)**, com tema **dark fosco** e fluxo de pesquisa simulado para o MVP.
+Interface minimalista estilo "busca", construída em **Next.js (App Router)**, com tema **dark fosco** e fluxo de pesquisa simulado para o MVP.
 
 > **Status:** MVP de interface (sem backend).  
 > **Objetivo do MVP:** validar identidade visual + comportamento de busca + espaço para futura integração com fontes públicas.
@@ -36,9 +36,9 @@ Este projeto entrega uma home com visual minimalista:
 - Logo central: **OpenAudit** (bold) + **Brasil** (thin)
 - Barra de pesquisa com ícone
 - Pesquisa ao apertar **Enter** ou clicar no **ícone**
-- Ao pesquisar: barra “sobe”, exibe loading **“Pesquisando...”** com animação de **três pontinhos**
+- Ao pesquisar: barra "sobe", exibe loading **"Pesquisando..."** com animação de **três pontinhos**
 - Abaixo do loading: exibe **fontes de dados** (uma por vez, 5s cada)
-- Ao final do ciclo: oculta o loading e exibe uma mensagem de “página em desenvolvimento”
+- Ao final do ciclo: oculta o loading e exibe uma mensagem de "página em desenvolvimento"
 
 Este MVP **não consulta dados reais**. Ele simula o fluxo para manter o front-end pronto para integração.
 
@@ -55,7 +55,7 @@ Este MVP **não consulta dados reais**. Ele simula o fluxo para manter o front-e
      - apertar **Enter** no input
      - clicar no **ícone** da barra
 3. **Transição para estado de busca**
-   - A barra de pesquisa deve ir para o topo (layout “modo resultados”).
+   - A barra de pesquisa deve ir para o topo (layout "modo resultados").
 4. **Loading**
    - Exibir `Pesquisando...` com animação somente nos `...` (1,2,3 e reinicia).
 5. **Fontes exibidas no MVP**
@@ -162,12 +162,12 @@ Este MVP já considera:
 
 * Input com `aria-label`
 * Rodapé com label de navegação
-* Área de status com `aria-live="polite"` para anunciar mudanças (“Pesquisando…”, resultado final)
+* Área de status com `aria-live="polite"` para anunciar mudanças ("Pesquisando…", resultado final)
 
-Recomendação futura:
+Implementação futura:
 
 * definir foco ao entrar em `searching` (ex.: manter foco no input para permitir editar rapidamente).
-* adicionar “Voltar/Resetar busca” com role de botão e foco previsível.
+* adicionar "Voltar/Resetar busca" com role de botão e foco previsível.
 
 ---
 
@@ -212,27 +212,27 @@ Em `app/globals.css`:
 ### Curto prazo (UI)
 
 * [ ] Bloquear busca vazia (ou decidir regra)
-* [ ] Botão “Resetar” (voltar ao estado `idle`)
-* [ ] Tela de “resultados” (lista minimalista estilo motor de busca)
+* [ ] Botão "Resetar" (voltar ao estado `idle`)
+* [ ] Tela de "resultados" (lista minimalista estilo motor de busca)
 * [ ] Melhorar páginas de Termos/Privacidade (texto real)
 
 ### Médio prazo (Integração)
 
 * [ ] Criar endpoint `/api/search` (mock)
-* [ ] Implementar polling/stream para mostrar fontes “em tempo real”
+* [ ] Implementar polling/stream para mostrar fontes "em tempo real"
 * [ ] Integrar com pipelines (crawler/indexação) conforme governança e compliance
 
 ### Longo prazo (Produto)
 
-* [ ] Versão “local-first” (rodar local para reduzir risco)
+* [ ] Versão "local-first" (rodar local para reduzir risco)
 * [ ] Auditoria de rastreabilidade (logs, versionamento, explicabilidade)
-* [ ] Módulo de “metodologia” e “limites do sistema”
+* [ ] Módulo de "metodologia" e "limites do sistema"
 
 ---
 
 ## Boas práticas e limites do projeto
 
-Este repositório **não tem como objetivo “acusar” ninguém**.
+Este repositório **não tem como objetivo "acusar" ninguém**.
 
 Diretrizes essenciais (para reduzir risco e manter credibilidade):
 
@@ -242,14 +242,14 @@ Diretrizes essenciais (para reduzir risco e manter credibilidade):
   * **padrão atípico**
   * **inconsistência estrutural**
   * **divergência documental**
-* Nunca publicar inferência como “culpa”.
+* Nunca publicar inferência como "culpa".
 * Separar:
 
   * **análise automatizada** (sinal)
   * **investigação manual** (conclusão/checagem)
 * Respeitar termos de uso e LGPD:
 
-  * dado “público” ≠ “livre para qualquer uso”
+  * dado "público" ≠ "livre para qualquer uso"
   * rastreabilidade e finalidade importam
 * Transparência metodológica:
 
@@ -286,12 +286,7 @@ Contribuições são bem-vindas, mas mantenha o projeto simples e defensável.
 
 ## Licença
 
-Defina aqui a licença do projeto (recomendado para open source):
-
-* **MIT** (simples) ou
-* **Apache-2.0** (boa para projeto cívico com patentes)
-
-> Se ainda não escolheu, deixe como “TBD” e finalize antes de tracionar contribuições externas.
+Apache License 2.0
 
 ---
 
