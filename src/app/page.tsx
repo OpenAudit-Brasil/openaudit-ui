@@ -44,7 +44,7 @@ export default function HomePage() {
         {phase === "idle" && (
           <div className="logo" aria-label="OpenAudit Brasil">
             <strong>OpenAudit</strong>
-            <span>Brasil</span>
+            <span className="text-yellow-300">Brasil</span>
           </div>
         )}
 
@@ -90,7 +90,7 @@ export default function HomePage() {
                 <div className="loadingCenter">
                   <div className="loadingTitle">
                     <span className="inline-flex items-baseline">
-                      <span>Pesquisando</span>
+                      <span className="text-yellow-300">Pesquisando</span>
                       <LoadingDots />
                     </span>
                   </div>
