@@ -9,6 +9,25 @@ and this project follows Semantic Versioning principles (SemVer).
 
 ## [0.0.2] - 2026-02-27
 
+### Added
+
+* Página **/manifest** com layout em cards, tópicos com ícones e foco em acessibilidade.
+* Componentes reutilizáveis: `ProjectSupportCard`, `SectionCard`, `Bullet`, `ExternalLink`, `IconBadge`.
+* Biblioteca de ícones reutilizáveis (Search/Clear/Mail + ícones de seções).
+* Hooks reutilizáveis: `useSearchMachine`, `useAutoFocusOnIdle`, `useEscapeToReset`.
+* Componente `LoadingDots` com largura fixa (não desloca “Pesquisando”).
+* Tailwind v4 integrado via `@import "tailwindcss"` + PostCSS.
+
+### Changed
+
+* Home refatorada para arquitetura baseada em hooks/componentes (mais reutilizável e consistente).
+* UX de busca: overlay centralizado, input `readOnly` durante “searching”, botão vira **X** para limpar, **Esc** reseta fluxo.
+* CSS global reorganizado/ajustado (overlay, alinhamentos, espaçamentos, footer).
+* Dependências atualizadas: `tailwindcss` e `@tailwindcss/postcss` + adição de `postcss`.
+
+### Docs
+
+* README atualizado.
 
 
 ---
