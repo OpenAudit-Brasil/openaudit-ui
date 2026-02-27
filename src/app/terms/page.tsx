@@ -48,7 +48,6 @@ export default function TermsPage() {
                         />
                     </div>
 
-                    <p className="mt-4 text-xs text-zinc-400">Acessibilidade: navegue com <span className="text-zinc-200">Tab</span>. Os títulos são estruturados para leitores de tela.</p>
                 </header>
 
                 {/* Sections */}

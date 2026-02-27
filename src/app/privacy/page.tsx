@@ -53,11 +53,6 @@ export default function PrivacyPage() {
                             icon={<DocumentIcon className="h-5 w-5" />}
                         />
                     </div>
-
-                    <p className="mt-4 text-xs text-zinc-400">
-                        Acessibilidade: navegue com <span className="text-zinc-200">Tab</span>.
-                        Estrutura semântica compatível com leitores de tela.
-                    </p>
                 </header>
 
                 {/* Sections */}

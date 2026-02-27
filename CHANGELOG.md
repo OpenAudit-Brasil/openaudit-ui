@@ -7,6 +7,14 @@ and this project follows Semantic Versioning principles (SemVer).
 
 ---
 
+## [0.0.3] - 2026-02-27
+
+### Added
+
+* Adicionado SEO e melhoria de estilos
+
+---
+
 ## [0.0.2] - 2026-02-27
 
 ### Added
