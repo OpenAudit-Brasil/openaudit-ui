@@ -46,7 +46,7 @@ export function ProjectSupportCard({
                     Em desenvolvimento
                 </span>
             </div>
-            <div className="flex items-start justify-between gap-4">
+            <div className="flex items-start justify-between gap-4 text-justify">
                 <div className="min-w-0">
                     <h2 className="mt-1 text-lg font-semibold text-white">
                         {projectName}
@@ -91,17 +91,17 @@ export function ProjectSupportCard({
                         <p className="text-xs font-medium text-zinc-400">Contato</p>
                         <a
                             href={`mailto:${email}`}
-                            className="text-sm font-semibold text-white underline decoration-red-700/60 underline-offset-4 hover:text-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                            className="text-xs font-semibold text-white underline decoration-red-700/60 underline-offset-4 hover:text-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                         >
                             {email}
                         </a>
                     </div>
                 </div>
 
-                <div className="text-xs text-zinc-400">
+                {window?.innerWidth > 768 && <div className="text-xs text-zinc-400">
                     Dica: pressione <span className="text-zinc-200">Esc</span> para limpar
                     e voltar.
-                </div>
+                </div>}
             </div>
         </section>
     );

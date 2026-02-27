@@ -7,7 +7,7 @@ export type FooterProps = {
 
 export default function Footer({ text, links }: FooterProps) {
     return (
-        <footer className="mt-8 text-xs text-zinc-500 p-4 border-t border-zinc-800 rounded-lg">
+        <footer className="mt-8 text-xs text-zinc-500 p-4 border-t border-zinc-800 rounded-lg text-justify">
             {text && <p>{text}</p>}
             <br />
             <div className="flex flex-wrap gap-4 justify-center">
