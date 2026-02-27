@@ -181,12 +181,14 @@ Em `app/page.tsx`:
 const SOURCES = ["Receita Federal", "gov.br", "IBGE", "IPEA", "TSE"] as const;
 ```
 
-### Alterar tempo de rotação (5s)
+### Alterar tempo de rotação (3s)
 
 Em `app/page.tsx`:
 
 ```ts
-}, 5000);
+
+({}, 1000);
+
 ```
 
 ### Alterar mensagem final
