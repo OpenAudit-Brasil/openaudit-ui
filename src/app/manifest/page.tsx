@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Bullet from "../components/Bullet";
 import ExternalLink from "../components/ExternalLink";
 import AlertTriangleIcon from "../components/Icons/AlertTriangleIcon";
@@ -11,6 +10,8 @@ import ScaleIcon from "../components/Icons/ScaleIcon";
 import ShieldIcon from "../components/Icons/ShieldIcon";
 import SectionCard from "../components/SectionCard";
 import InternalLink from "../components/InternalLink";
+import BackToHomeButton from "../components/BackToHomeButton";
+import Footer from "../components/Footer";
 
 export default function ManifestPage() {
     return (
@@ -19,6 +20,9 @@ export default function ManifestPage() {
             aria-label="Página do Manifesto"
         >
             <div className="mx-auto w-full max-w-3xl">
+                <div className="mb-4">
+                    <BackToHomeButton />
+                </div>
                 {/* Header */}
                 <header className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-6 shadow-lg backdrop-blur">
                     <p className="text-xs font-medium tracking-widest text-zinc-400">
@@ -186,15 +190,15 @@ export default function ManifestPage() {
                 </div>
 
                 {/* Footer note */}
-                <footer className="mt-8 text-xs text-zinc-500 p-4 border-t border-zinc-800 text-justify rounded-lg">
-                    <p>
-                        Este manifesto é um compromisso público com transparência, ética e
-                        responsabilidade. Atualizações devem ser registradas com histórico e
-                        justificativa.
-                    </p>
-                    <br />
-                    <p><Link href="/">Voltar Página Principal</Link></p>
-                </footer>
+
+                <Footer
+                    text="Este manifesto é um compromisso público com transparência, ética e responsabilidade. Atualizações devem ser registradas com histórico e justificativa."
+                    links={[
+                        { href: "/terms", label: "Termos" },
+                        { href: "/privacy", label: "Política de Privacidade" },
+                        { href: "/manifest", label: "Manifesto" }
+                    ]}
+                />
             </div>
         </main>
     );

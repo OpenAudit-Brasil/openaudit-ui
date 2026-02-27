@@ -15,12 +15,14 @@ export default function SectionCard({
             aria-labelledby={titleId}
             className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-5 shadow-lg backdrop-blur"
         >
-            <div className="flex items-start gap-4">
-                <div className="group shrink-0">{icon}</div>
-                <div className="min-w-0">
+            <div className="items-start gap-4">
+                <div className="flex items-center gap-8 mb-4">
+                    <div className="group shrink-0">{icon}</div>
                     <h2 id={titleId} className="text-base font-semibold text-white">
                         {title}
                     </h2>
+                </div>
+                <div className="min-w-0">
                     {subtitle && (
                         <p className="mt-1 text-sm text-zinc-300 leading-relaxed">
                             {subtitle}
