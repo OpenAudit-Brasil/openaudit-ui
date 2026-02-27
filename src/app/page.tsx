@@ -9,6 +9,7 @@ import ClearIcon from "./components/Icons/ClearIcon";
 import SearchIcon from "./components/Icons/SearchIcon";
 import LoadingDots from "./components/LoadingDots";
 import useEscapeToReset from "./hooks/scapeToReset";
+import Link from "next/link";
 
 
 export default function HomePage() {
@@ -101,7 +102,7 @@ export default function HomePage() {
                 <ProjectSupportCard
                   projectName="OpenAudit Brasil"
                   githubUrl="https://github.com/OpenAudit-Brasil"
-                  manifestoUrl="https://openauditbrasil.com/manifest"
+                  manifestoUrl="/manifest"
                   email="comunidade@openauditbrasil.com"
                 />
               )}
@@ -111,9 +112,9 @@ export default function HomePage() {
       </main>
 
       <footer className="footer" aria-label="Rodapé">
-        <a href="/terms">Termos</a>
-        <a href="/privacy">Política de Privacidade</a>
-        <a href="/manifest">Manifesto</a>
+        <Link href="/terms">Termos</Link>
+        <Link href="/privacy">Política de Privacidade</Link>
+        <Link href="/manifest">Manifesto</Link>
       </footer>
     </div>
   );

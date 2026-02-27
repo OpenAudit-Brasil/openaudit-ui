@@ -9,7 +9,7 @@ import MailIcon from "../Icons/MailIcon";
 export function ProjectSupportCard({
     projectName = "OpenAudit Brasil",
     githubUrl = "https://github.com/OpenAudit-Brasil",
-    manifestoUrl = "https://openauditbrasil.com/manifest",
+    manifestoUrl = "/manifest",
     email = "comunidade@openauditbrasil.com",
 }: {
     projectName?: string;
