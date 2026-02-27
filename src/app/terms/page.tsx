@@ -26,18 +26,14 @@ export default function TermsPage() {
                 </div>
 
                 {/* Header */}
-                <header className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-6 shadow-lg backdrop-blur">
+                <header className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-6 shadow-lg backdrop-blur text-justify">
                     <p className="text-xs font-medium tracking-widest text-zinc-400">
                         TERMOS • USO RESPONSÁVEL • OPEN SOURCE
                     </p>
 
                     <h1 className="mt-2 text-2xl font-semibold text-white">Termos de Uso</h1>
 
-                    <p className="mt-3 text-sm text-zinc-300 leading-relaxed">
-                        Estes Termos descrevem regras básicas para uso do site e do software do
-                        OpenAudit Brasil. O objetivo é reduzir riscos de abuso, difamação e mau uso de
-                        análises baseadas em dados públicos.
-                    </p>
+                    <p className="mt-3 text-sm text-zinc-300 leading-relaxed">Estes Termos descrevem regras básicas para uso do site e do software do OpenAudit Brasil. O objetivo é reduzir riscos de abuso, difamação e mau uso de análises baseadas em dados públicos.</p>
 
                     <div className="mt-5 grid gap-3 sm:grid-cols-2">
                         <ExternalLink
@@ -52,14 +48,11 @@ export default function TermsPage() {
                         />
                     </div>
 
-                    <p className="mt-4 text-xs text-zinc-400">
-                        Acessibilidade: navegue com <span className="text-zinc-200">Tab</span>. Os
-                        títulos são estruturados para leitores de tela.
-                    </p>
+                    <p className="mt-4 text-xs text-zinc-400">Acessibilidade: navegue com <span className="text-zinc-200">Tab</span>. Os títulos são estruturados para leitores de tela.</p>
                 </header>
 
                 {/* Sections */}
-                <div className="mt-6 grid gap-4">
+                <div className="mt-6 grid gap-4 text-justify">
                     <SectionCard
                         title="1) Aceitação"
                         subtitle="Ao acessar este site, você concorda com estas regras."

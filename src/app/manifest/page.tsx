@@ -33,7 +33,7 @@ export default function ManifestPage() {
                         Manifesto do OpenAudit Brasil
                     </h1>
 
-                    <p className="mt-3 text-sm text-zinc-300 leading-relaxed">
+                    <p className="mt-3 text-sm text-zinc-300 leading-relaxed text-justify">
                         O OpenAudit Brasil é uma iniciativa open source para fortalecer a
                         transparência pública com responsabilidade: cruzar bases abertas,
                         identificar inconsistências estruturais e produzir sinais
@@ -62,7 +62,7 @@ export default function ManifestPage() {
                 </header>
 
                 {/* Sections */}
-                <div className="mt-6 grid gap-4">
+                <div className="mt-6 grid gap-4 text-justify">
                     <SectionCard
                         title="Nossa missão"
                         subtitle="Criar infraestrutura pública, auditável e juridicamente defensável para análise de dados governamentais."
