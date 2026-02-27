@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Bullet from "../components/Bullet";
 import ExternalLink from "../components/ExternalLink";
 import AlertTriangleIcon from "../components/Icons/AlertTriangleIcon";
@@ -191,7 +192,7 @@ export default function ManifestPage() {
                         justificativa.
                     </p>
                     <br />
-                    <p><a href="/">Voltar Página Principal</a></p>
+                    <p><Link href="/">Voltar Página Principal</Link></p>
                 </footer>
             </div>
         </main>
