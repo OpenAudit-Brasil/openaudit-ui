@@ -10,6 +10,7 @@ import NetworkIcon from "../components/Icons/NetworkIcon";
 import ScaleIcon from "../components/Icons/ScaleIcon";
 import ShieldIcon from "../components/Icons/ShieldIcon";
 import SectionCard from "../components/SectionCard";
+import InternalLink from "../components/InternalLink";
 
 export default function ManifestPage() {
     return (
@@ -41,8 +42,8 @@ export default function ManifestPage() {
                             label="Repositório no GitHub"
                             icon={<GithubIcon className="h-5 w-5" />}
                         />
-                        <ExternalLink
-                            href="https://openauditbrasil.com/manifest"
+                        <InternalLink
+                            href="/manifest"
                             label="Versão completa do Manifesto"
                             icon={<DocumentIcon className="h-5 w-5" />}
                         />
@@ -160,8 +161,8 @@ export default function ManifestPage() {
                                 label="Acompanhar issues e PRs"
                                 icon={<GithubIcon className="h-5 w-5" />}
                             />
-                            <ExternalLink
-                                href="https://openauditbrasil.com/manifest"
+                            <InternalLink
+                                href="/manifest"
                                 label="Ler o Manifesto completo"
                                 icon={<DocumentIcon className="h-5 w-5" />}
                             />
