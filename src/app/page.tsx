@@ -1,70 +1,46 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React from "react";
+import { ProjectSupportCard } from "./components/ProjectSupportCard";
+import useSearchMachine from "./hooks/searchMachine";
+import useAutoFocusOnIdle from "./hooks/autoFocusOnIdle";
+import IconButton from "./components/Icons/IconButton";
+import ClearIcon from "./components/Icons/ClearIcon";
+import SearchIcon from "./components/Icons/SearchIcon";
+import LoadingDots from "./components/LoadingDots";
+import useEscapeToReset from "./hooks/scapeToReset";
 
-type Phase = "idle" | "searching" | "done";
-
-const SOURCES = ["Receita Federal", "gov.br", "IBGE", "IPEA", "TSE"] as const;
-
-function LoadingDots() {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    const id = window.setInterval(() => {
-      setCount((c) => (c + 1) % 4); // 0..3
-    }, 450);
-    return () => window.clearInterval(id);
-  }, []);
-
-  return <>{Array(count).fill(".").join("")}</>;
-}
 
 export default function HomePage() {
-  const [phase, setPhase] = useState<Phase>("idle");
-  const [query, setQuery] = useState("");
-  const [sourceIndex, setSourceIndex] = useState(0);
+  const {
+    phase,
+    query,
+    setQuery,
+    currentSource,
+    isSearching,
+    isAfterSearch,
+    isInputBlocked,
+    startSearch,
+    resetToIdle,
+  } = useSearchMachine();
 
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const currentSource = useMemo(() => {
-    return SOURCES[Math.min(sourceIndex, SOURCES.length - 1)];
-  }, [sourceIndex]);
-
-  const startSearch = () => {
-    if (phase === "searching") return;
-
-    // MVP: até aceita query vazia (você decide depois se bloqueia)
-    setPhase("searching");
-    setSourceIndex(0);
-  };
-
-  useEffect(() => {
-    if (phase !== "searching") return;
-
-    let idx = 0;
-    const intervalId = window.setInterval(() => {
-      idx += 1;
-      if (idx >= SOURCES.length) {
-        window.clearInterval(intervalId);
-        setPhase("done");
-        return;
-      }
-      setSourceIndex(idx);
-    }, 5000);
-
-    return () => window.clearInterval(intervalId);
-  }, [phase]);
-
-  // UX: foco no input quando volta pra idle
-  useEffect(() => {
-    if (phase === "idle") inputRef.current?.focus();
-  }, [phase]);
+  const inputRef = useAutoFocusOnIdle(phase);
 
   const mainClass = phase === "idle" ? "main centered" : "main searching";
 
+  const statusId = "search-status";
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") startSearch();
+    if (e.key === "Escape" && isAfterSearch) resetToIdle();
+    if (e.key === "Enter") startSearch();
+  };
+
+  useEscapeToReset({ enabled: isAfterSearch, onEscape: resetToIdle });
+
   return (
     <div className="page">
-      <main className={mainClass}>
+      <main className={mainClass} aria-busy={isSearching}>
         {phase === "idle" && (
           <div className="logo" aria-label="OpenAudit Brasil">
             <strong>OpenAudit</strong>
@@ -73,48 +49,62 @@ export default function HomePage() {
         )}
 
         <div className="searchWrap">
-          <div className="searchBar" role="search">
+          <div className="searchBar" role="search" aria-describedby={statusId}>
             <input
               ref={inputRef}
               className="searchInput"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Buscar registro…"
+              placeholder="Pesquisar"
               aria-label="Campo de busca"
-              onKeyDown={(e) => {
-                if (e.key === "Enter") startSearch();
-              }}
+              onKeyDown={handleKeyDown}
+              readOnly={isInputBlocked}
+              aria-readonly={isInputBlocked}
             />
 
-            <button
-              className="iconBtn"
-              onClick={startSearch}
-              aria-label="Iniciar pesquisa"
-              type="button"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <circle cx="11" cy="11" r="7"></circle>
-                <path d="M20 20L17 17"></path>
-              </svg>
-            </button>
+            {isAfterSearch ? (
+              <IconButton
+                onClick={resetToIdle}
+                label="Limpar pesquisa e voltar ao início"
+              >
+                <ClearIcon />
+              </IconButton>
+            ) : (
+              <IconButton
+                onClick={startSearch}
+                label="Iniciar pesquisa"
+                disabled={isSearching}
+              >
+                <SearchIcon />
+              </IconButton>
+            )}
           </div>
 
-          {(phase === "searching" || phase === "done") && (
-            <div className="loadingArea" aria-live="polite">
+          {isAfterSearch && (
+            <div
+              className={phase === "searching" ? "loadingOverlay" : "loadingArea"}
+              aria-live="polite"
+              id={statusId}
+            >
               {phase === "searching" && (
-                <>
+                <div className="loadingCenter">
                   <div className="loadingTitle">
-                    Pesquisando<LoadingDots />
+                    <span className="inline-flex items-baseline">
+                      <span>Pesquisando</span>
+                      <LoadingDots />
+                    </span>
                   </div>
-                  <div className="sourceLine">{currentSource}</div>
-                </>
+                  <div className="m-0 p-0 sourceLine">{currentSource}</div>
+                </div>
               )}
 
               {phase === "done" && (
-                <div className="resultBox">
-                  página em desenvolvimento. Apoie a causa{" "}
-                  <strong>comunidade@openauditbrasil.com</strong>
-                </div>
+                <ProjectSupportCard
+                  projectName="OpenAudit Brasil"
+                  githubUrl="https://github.com/OpenAudit-Brasil"
+                  manifestoUrl="https://openauditbrasil.com/manifesto"
+                  email="comunidade@openauditbrasil.com"
+                />
               )}
             </div>
           )}
@@ -124,6 +114,7 @@ export default function HomePage() {
       <footer className="footer" aria-label="Rodapé">
         <a href="/terms">Termos</a>
         <a href="/privacy">Política de Privacidade</a>
+        <a href="/manifest">Manifesto</a>
       </footer>
     </div>
   );
