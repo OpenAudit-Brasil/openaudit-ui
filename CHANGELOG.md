@@ -7,6 +7,12 @@ and this project follows Semantic Versioning principles (SemVer).
 
 ---
 
+## [0.0.2] - 2026-02-27
+
+
+
+---
+
 
 ## [0.0.1] - 2026-02-26
 
