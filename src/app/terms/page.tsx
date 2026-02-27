@@ -20,7 +20,7 @@ export default function TermsPage() {
                 {/* Top bar */}
                 <div className="mb-4 flex items-center justify-between gap-3">
                     <BackToHomeButton />
-                    <p className="text-xs text-zinc-500">
+                    <p className="text-xs text-zinc-500 pr-3">
                         Última atualização: <span className="text-zinc-300">27/02/2026</span>
                     </p>
                 </div>

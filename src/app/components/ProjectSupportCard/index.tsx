@@ -63,7 +63,7 @@ export function ProjectSupportCard({
                     <a
                         key={item.href}
                         href={item.href}
-                        target="_blank"
+                        target="_self"
                         rel="noreferrer"
                         className="group flex items-center gap-3 rounded-xl border border-zinc-800 bg-zinc-950/30 p-3 text-sm text-zinc-200 transition hover:border-red-700/60 hover:bg-zinc-950/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                     >
