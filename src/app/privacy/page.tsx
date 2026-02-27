@@ -15,7 +15,7 @@ export default function PrivacyPage() {
             className="min-h-screen bg-black px-1 pb-24 pt-10 text-white"
             aria-label="Página de Política de Privacidade"
         >
-            <div className="mx-auto w-full max-w-3xl">
+            <div className="mx-auto w-full max-w-3xl text-justify">
                 {/* Top bar */}
                 <div className="mb-4 flex items-center justify-between gap-3">
                     <BackToHomeButton />
