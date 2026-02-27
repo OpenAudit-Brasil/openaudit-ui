@@ -33,7 +33,6 @@ export default function HomePage() {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") startSearch();
     if (e.key === "Escape" && isAfterSearch) resetToIdle();
-    if (e.key === "Enter") startSearch();
   };
 
   useEscapeToReset({ enabled: isAfterSearch, onEscape: resetToIdle });
@@ -102,7 +101,7 @@ export default function HomePage() {
                 <ProjectSupportCard
                   projectName="OpenAudit Brasil"
                   githubUrl="https://github.com/OpenAudit-Brasil"
-                  manifestoUrl="https://openauditbrasil.com/manifesto"
+                  manifestoUrl="https://openauditbrasil.com/manifest"
                   email="comunidade@openauditbrasil.com"
                 />
               )}

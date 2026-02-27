@@ -3,7 +3,7 @@
 import { LinkItem } from "app/types";
 import React from "react";
 import DocumentIcon from "../Icons/DocumentIcon";
-import GithubIcon from "../Icons/GithuIcon";
+import GithubIcon from "../Icons/GithubIcon";
 import MailIcon from "../Icons/MailIcon";
 
 export function ProjectSupportCard({

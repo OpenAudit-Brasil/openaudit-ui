@@ -3,7 +3,7 @@ import ExternalLink from "../components/ExternalLink";
 import AlertTriangleIcon from "../components/Icons/AlertTriangleIcon";
 import DocumentIcon from "../components/Icons/DocumentIcon";
 import EyeIcon from "../components/Icons/EyeIcon";
-import GithubIcon from "../components/Icons/GithuIcon";
+import GithubIcon from "../components/Icons/GithubIcon";
 import IconBadge from "../components/Icons/IconBadge";
 import NetworkIcon from "../components/Icons/NetworkIcon";
 import ScaleIcon from "../components/Icons/ScaleIcon";
@@ -41,7 +41,7 @@ export default function ManifestPage() {
                             icon={<GithubIcon className="h-5 w-5" />}
                         />
                         <ExternalLink
-                            href="https://openauditbrasil.com/manifesto"
+                            href="https://openauditbrasil.com/manifest"
                             label="Versão completa do Manifesto"
                             icon={<DocumentIcon className="h-5 w-5" />}
                         />
