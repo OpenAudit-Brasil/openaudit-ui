@@ -35,7 +35,7 @@ export function ProjectSupportCard({
             aria-label="Informações do projeto"
             className="w-full rounded-2xl border border-zinc-800 bg-zinc-950/60 p-5 shadow-lg backdrop-blur"
         >
-            <div className="flex items-end justify-between gap-4 w-full mb-4">
+            <div className="flex items-end justify-between gap-4 w-full mb-8">
                 <p className="text-xs font-medium tracking-widest text-zinc-400">
                     RESULTADO
                 </p>
@@ -48,7 +48,7 @@ export function ProjectSupportCard({
             </div>
             <div className="flex items-start justify-between gap-4 text-justify">
                 <div className="min-w-0">
-                    <h2 className="mt-1 text-lg font-semibold text-white">
+                    <h2 className="mt-1 text-lg font-semibold text-white pb-4">
                         {projectName}
                     </h2>
                     <p className="mt-2 text-sm text-zinc-300">
